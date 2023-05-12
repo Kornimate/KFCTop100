@@ -1,0 +1,32 @@
+﻿@model KFCSharedData.Record
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Model.Name</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dd class="col-sm-10 justify-content-center">
+            @if (Model.Picture is null)
+            {
+                <img src="@Url.Action("DisplayDefaultImage", "Records")" class="item" />
+            }
+            else
+            {
+                <img src="@Url.Action("DisplayImage", "Records", new { id = Model.Id })" class="item rounded mx-auto d-block" id="image"/>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index" asp-controller="Records" class="btn btn-primary">Back to LeaderBoard</a>
+</div>

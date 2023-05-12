@@ -1,0 +1,54 @@
+﻿@model RecordViewModel
+
+@{
+    ViewData["Title"] = "LeaderBoard";
+}
+
+<h1>LeaderBoard</h1>
+<form asp-action="Index" asp-controller="Records" class="input-group mb-3">
+    <input type="text" class="form-control" name="searchString" id="searchString" placeholder="Type here you want to search..." value="@Model.SearchString"/>
+    <div class="input-group-append">
+        <input type="submit" value="🔎" class="btn btn-primary" />
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Place
+            </th>
+            <th>
+                CityName
+            </th>
+            <th>
+                PlayTime
+            </th>
+            <th>
+                Population
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Place).
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Population)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Details" asp-controller="Records" asp-route-id="@item.Id">Let's see the City!</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
